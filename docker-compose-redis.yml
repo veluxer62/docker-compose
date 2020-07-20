@@ -1,4 +1,4 @@
-version: '3.0'
+version: "3.0"
 
 services:
   redis:
@@ -7,3 +7,5 @@ services:
     restart: always
     ports:
       - 6379:6379
+    environment:
+      - BITNAMI_DEBUG=true

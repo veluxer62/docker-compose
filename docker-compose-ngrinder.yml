@@ -1,0 +1,25 @@
+version: "3.1"
+
+services:
+  controller:
+    image: ngrinder/controller:3.4
+    ports:
+      - 9999:80
+      - 16001:16001
+      - 12000-12009:12000-12009
+    volumes:
+      - ~/.ngrinder:/opt/ngrinder-controller
+    networks:
+      - ngrinder-network
+
+  agent:
+    image: ngrinder/agent:3.4
+    volumes:
+      - ~/.ngrinder:/opt/ngrinder-controller
+    command:
+      - controller:80
+    networks:
+      - ngrinder-network
+
+networks:
+  ngrinder-network:
